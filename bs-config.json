@@ -1,0 +1,15 @@
+{
+  "port": 8000,
+//  "files": ["./src/**/*.{html,htm,css,js,ts}","*.html","https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css","./node_modules/angular2-toaster/toaster.css", "app/js/*.js"],
+  "https" : true,
+  "browser" : ["google-chrome", "firefox"],
+  "server": {
+    "baseDir": "./",
+    "routes": {
+      "/node_modules": "node_modules" ,
+      "/app": "src",
+      "/login": "./src/test/TestComponent.ts",
+      "/": "./"
+    }
+  }
+}

@@ -1,0 +1,36 @@
+
+ <div class="col-md-5">
+     <form novalidate (ngSubmit)="onSubmit(user.value,user.valid,$event)" [formGroup]="user">
+         <div class="form-group"  [ngClass]="{'has-error': user.get('email').invalid}">
+             <label class="center-block">user Name:
+                 <input class="form-control" formControlName="email"  placeholder="User Name"
+                        pattern='^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+$'
+                 >
+
+                 <alert type="danger"
+                        *ngIf="user.get('email').hasError('required') && user.get('email').touched">
+                             User Name is required and user should be valid email address
+                 </alert>
+             </label>
+         </div>
+         <div class="form-group">
+             <label class="center-block">password:
+                 <input class="form-control" formControlName="password" placeholder="Password">
+                 <alert type="danger"
+                        *ngIf="user.get('password').hasError('required') && user.get('password').touched">
+                     password is required
+                 </alert>
+             </label>
+         </div>
+         <div class="checkbox">
+             <label class="center-block">
+                 <input type="checkbox" formControlName="rememberMe" >Remember Me?
+             </label>
+         </div>
+         <button type="submit" [disabled]="user.invalid"  class="btn btn-default">Sign up</button>
+         <div>
+             <a routerLink="/forgot-password"><i class="fa fa-lock m-r-5"></i>forgot password</a>
+         </div>
+     </form>
+</div>
+
