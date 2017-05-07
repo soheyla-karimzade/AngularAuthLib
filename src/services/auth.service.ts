@@ -17,8 +17,8 @@ export class AuthService{
         headers.append('Access-Control-Allow-Origin',"*");
         headers.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
         headers.append('Access-Control-Allow-Headers','X-Requested-With');
-        console.log( this.http.post(this.getApiUrl() + "auth/user/login",JSON.stringify({rememberMe: true}), {"headers": headers}));
-        return this.http.post(this.getApiUrl() + "api/user/login",JSON.stringify({rememberMe: true}), {"headers": headers});
+        console.log( this.http.post( "http://localhost:8000/auth/user/login",JSON.stringify({rememberMe: true}), {"headers": headers}));
+        return this.http.post( "http://localhost:8000/api/user/login",JSON.stringify({rememberMe: true}), {"headers": headers});
     }
 
 
@@ -65,7 +65,7 @@ export class AuthService{
     }
 
 
-    public setApiUrl(apiUrl){
+    public  setApiUrl(apiUrl){
         let apiConfig = new Config();
         apiConfig.apiUrl = apiUrl;
         Cookie.set("ApiUrl",apiConfig.apiUrl);
@@ -74,7 +74,14 @@ export class AuthService{
     public  getApiUrl(){
         return Cookie.get("ApiUrl") ;
     }
+    public  setRememberme(rememberMe){
+        Cookie.set("rememberMe",rememberMe);
+    }
 
+
+    public  getRememberme(){
+        return Cookie.get("rememberMe");
+    }
 
 
 }

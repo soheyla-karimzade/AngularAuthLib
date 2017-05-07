@@ -4,7 +4,7 @@ import {LoginComponent} from "../login/login.component";
 
 @Component({
     selector: 'dynamic-component',
-    entryComponents: [LoginComponent], // Reference to the components must be here in order to dynamically create them
+    // entryComponents: [LoginComponent], // Reference to the components must be here in order to dynamically create them
     template: ` sdsss <div #dynamicComponentContainer></div> `,
 })
 export default class DynamicComponent {

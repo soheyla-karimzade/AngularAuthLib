@@ -17,6 +17,9 @@ import {ResetPasswordComponent} from "./login/reset-password.component";
 import {IsNotLoggedInResolve} from "./routing/is-not-logged-in.resolve";
 import {AppRoutes} from "./AppRoutes";
 import {AuthService} from "./services/auth.service";
+import {MainDirective} from "./directives/main-directive";
+import {LoginTemplate} from "./directives/login-template.directive";
+import {RememberMeComponent} from "./components/remember-me.component";
 
 
 export * from './sample.component';
@@ -44,7 +47,10 @@ export * from './sample.service';
       LoginComponent,
       ForgotPasswordComponent,
       EqualValidator,
-      ResetPasswordComponent
+      ResetPasswordComponent,
+      MainDirective,
+      LoginTemplate,
+      RememberMeComponent
     ],
     exports: [
       SampleComponent,
@@ -52,7 +58,9 @@ export * from './sample.service';
       SamplePipe,
       LoginComponent,
       ForgotPasswordComponent,
-      ResetPasswordComponent
+      ResetPasswordComponent,
+      MainDirective,
+      RememberMeComponent
     ],
     providers: [CookieService, IsNotLoggedInResolve, AuthService],
     bootstrap: [SampleComponent]
@@ -62,8 +70,8 @@ export * from './sample.service';
       return {
         ngModule: SampleModule,
         providers: [SampleService],
-
       };
     }
+
   }
 // }
