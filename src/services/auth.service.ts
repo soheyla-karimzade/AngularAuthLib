@@ -77,10 +77,16 @@ export class AuthService{
     public  setRememberme(rememberMe){
         Cookie.set("rememberMe",rememberMe);
     }
-
-
     public  getRememberme(){
         return Cookie.get("rememberMe");
+    }
+
+
+    public  setForgotPassword(forgotPassword){
+        Cookie.set("forgotPassword",forgotPassword);
+    }
+    public  getForgotPassword(){
+        return Cookie.get("forgotPassword");
     }
 
 

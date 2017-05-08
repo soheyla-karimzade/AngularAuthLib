@@ -12,9 +12,19 @@ export class MainDirective implements OnInit{
     @Input('urlServer') url: string;
     @Input() rememberMe:boolean;
     @Input() template:Tempalte;
+    @Input() login:string;
+    @Input() forgotPassword:string;
     ngOnInit(): void {
         this.authService.setApiUrl('http://localhost:'+this.url);
         this.authService.setRememberme(this.rememberMe);
-        console.log(typeof  this.authService.getRememberme(),this.rememberMe)
+        this.authService.setForgotPassword(this.forgotPassword);
+        for (let index in this.template) // for acts as a foreach
+        {
+            // console.log(this.template[index].name,this.template[index].tempalte);
+            if(this.template[index].name=='login'){
+                this.login=this.template[index].tempalte;
+            }
+        }
+
     }
 }

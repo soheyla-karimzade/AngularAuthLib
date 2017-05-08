@@ -1,11 +1,16 @@
-import {Component, OnInit, Injector, QueryList, ContentChildren, ViewChild, Input} from "@angular/core";
+import {Directive,Component, OnInit, Injector, QueryList, ContentChildren, ViewChild, Input,AfterViewInit} from "@angular/core";
 import {FormGroup, Validators, FormBuilder} from "@angular/forms";
 import {AuthService} from "../services/auth.service";
 import {Login} from "../models/Login";
 import {User} from "../models/User";
 import { ToasterService} from 'angular2-toaster';
-import {LoginTemplate} from "../directives/login-template.directive";
 import {RememberMeComponent}  from "../components/remember-me.component"
+import {MainDirective} from "../directives/main-directive";
+import {Tempalte} from "../models/template";
+import {LoadTemplate} from "../directives/load-template.directive";
+import {LoginTempalte} from "../components/login-template.component";
+
+
 
 
 
@@ -25,7 +30,7 @@ import {RememberMeComponent}  from "../components/remember-me.component"
     '<input type="checkbox" formControlName="rememberMe" >Remember Me? ' +
     '</label></div>'+
     '<button type="submit"  class="btn btn-default" [disabled]="user.invalid">Sign up</button> <div>' +
-    ' <a routerLink="/forgot-password"><i class="fa fa-lock m-r-5"></i>forgot password</a> </div> </form> </div></div>',
+    ' <a   *ngIf="forgotPassword" routerLink="/forgot-password"><i class="fa fa-lock m-r-5"></i>forgot password</a> </div> </form> </div></div>',
     providers: [AuthService],
     styleUrls: [ "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"]
 })
@@ -34,13 +39,13 @@ import {RememberMeComponent}  from "../components/remember-me.component"
 
 export  class LoginComponent  implements OnInit{
 
-    @ViewChild(RememberMeComponent) rememberMeComponent: RememberMeComponent;
+
     private login:Login[];
     private rememeberMe:boolean;
-    @Input() template:string;
+    private forgotPassword:boolean;
     user: FormGroup;
-    constructor(private authService:AuthService,private fb: FormBuilder,private toaster:ToasterService,private injector: Injector) {
-        // this.tempUrl = this.injector.get('tempUrl');
+    @ViewChild(LoginTempalte) loginTemplate: LoginTempalte;
+    constructor(private authService:AuthService,private fb: FormBuilder,private toaster:ToasterService) {
     }
 
 
@@ -67,6 +72,12 @@ export  class LoginComponent  implements OnInit{
             this.rememeberMe=true;
         }else{
             this.rememeberMe=false;
+        }
+
+        if(this.authService.getForgotPassword()=="true"){
+            this.forgotPassword=true;
+        }else{
+            this.forgotPassword=false;
         }
 
     }

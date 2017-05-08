@@ -18,8 +18,9 @@ import {IsNotLoggedInResolve} from "./routing/is-not-logged-in.resolve";
 import {AppRoutes} from "./AppRoutes";
 import {AuthService} from "./services/auth.service";
 import {MainDirective} from "./directives/main-directive";
-import {LoginTemplate} from "./directives/login-template.directive";
 import {RememberMeComponent} from "./components/remember-me.component";
+import {LoadTemplate} from "./directives/load-template.directive";
+import {LoginTempalte} from "./components/login-template.component";
 
 
 export * from './sample.component';
@@ -49,8 +50,9 @@ export * from './sample.service';
       EqualValidator,
       ResetPasswordComponent,
       MainDirective,
-      LoginTemplate,
-      RememberMeComponent
+      LoadTemplate,
+      RememberMeComponent,
+      LoginTempalte
     ],
     exports: [
       SampleComponent,
@@ -60,7 +62,9 @@ export * from './sample.service';
       ForgotPasswordComponent,
       ResetPasswordComponent,
       MainDirective,
-      RememberMeComponent
+      RememberMeComponent,
+      LoadTemplate,
+      LoginTempalte
     ],
     providers: [CookieService, IsNotLoggedInResolve, AuthService],
     bootstrap: [SampleComponent]
